@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    
+{% block welcome %}
+<h3>Hello! {{user.username}}</h3>
+<p> Welcome! Together we will keep your spendings under control.<br>
+    Let's make sure that your savings are enough to fulfill all your dreams.
+</p>
+<span>
+    <a class="nav-link"  href="{% url 'add_income' %}">Add Income</a>
+    <a class="nav-link"  href="{% url 'add_expense' %}">Add Expense</a>
+    <a class="nav-link"  href="{% url 'income_list' %}">Show Income Only</a>
+    <a class="nav-link"  href="{% url 'expense_list' %}">Show Income Only</a>
+   
+</span>
+
+<div>
+{% block income %}
+
+{% endblock %}
+</div>
+
+<div>
+    {% block expense %}
+    
+    {% endblock %}
+    </div>
+
+{% endblock %}
+</body>
+</html>
