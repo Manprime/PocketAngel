@@ -2,11 +2,13 @@
 Welcome to README! 
 This is a budget tracking app created using Django framework of Python.
 <br> 
-This project is currently public on GitHub. Hope. you get valuable insights from it. 
+This project is currently public on GitHub. Hope,you get valuable insights from it. 
 <br>
-I have really worked hard and put in a lot of efforts and my time in this project.
+The project is in development stage
 <br>
-<p>
+
+<br>
+<p>Project:-
   The Budget Tracker is a Web application designed to help users
 	manage their finances effectively by tracking income, expenses, and
 	savings. It offers features like categorizing spending, setting
@@ -16,7 +18,7 @@ I have really worked hard and put in a lot of efforts and my time in this projec
 	financial habits.
 </p>
 <br>
-<p>
+<p>Objective:-
 	The Budget Tracker will enable users to gain real-time insights into
 	their spending, stay within budget limits, and achieve their
 	financial goals. Through an intuitive interface, detailed
