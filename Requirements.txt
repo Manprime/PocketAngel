@@ -1,4 +1,0 @@
-Requirements:
-Python Version 3.12
-Django 5.1
-Prior knowledge in databases,html,css etc
