@@ -5,7 +5,7 @@ from .forms import ManualRegisterForm
 from .forms import IncomeForm,ExpenseForm
 from .models import Income,Expense
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.views import LoginView
 
 # Create your views here.
 def indexfunc(request):
@@ -13,6 +13,15 @@ def indexfunc(request):
 
 def about(request):
     return render(request,'about.html')
+
+
+
+class CustomeLoginView(LoginView):
+    template_name = 'signin.html'
+
+
+
+
 
 def signout(request):
     logout(request)

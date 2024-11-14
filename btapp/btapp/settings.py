@@ -129,5 +129,15 @@ STATICFILES_DIRS = [
 ]
 
 #manual add
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 #here give the 'name' value specified in a  path in urls.py of app for redirect
+
+
+#manual add custom user model
+#AUTH_USER_MODEL = <app name >.<model name>
+AUTH_USER_MODEL = 'home.UserProfile'
+#manual add  
+# This code tells Django to use new custom authentication backend. 
+#<appname><backends.py><class name in backedns.py>
+AUTHENTICATION_BACKENDS = ['home.backends.EmailBackend']# this is path for emailsbackend
