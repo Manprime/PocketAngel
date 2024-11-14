@@ -1,0 +1,19 @@
+Uname: Man
+Email: man@man.in
+pass:!@#$%^&*()
+
+superuserr
+man1@man1.com
+!@#$%^&*()
+
+
+uname:U1  , L1, N1
+email:U1@U1.in
+
+pass:*963./8520
+
+pass:*963./8520 
+pass:*963./8520
+
+
+https://github.com/Manprime/PocketAngel.git

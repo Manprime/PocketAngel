@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Income/Expense</title>
+</head>
+<body>
+
+    {% if form_type == 'income' %}
+    <div class="flex-add-income">
+    <h3>Add Income</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ income_form.as_p }}
+        <button type="submit">Add Income</button>
+    </form>
+    <a href="{% url 'income_list' %}">View Dashboard</a>
+    </div>
+      <br>
+
+
+    {% elif form_type == 'expense' %}
+    <div class="flex-add-expense">
+        <h3>Add Expense</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ expense_form.as_p }}
+        <button type="submit">Add Expense</button>
+    </form>
+    <a href="{% url 'expense_list' %}">View Dashboard</a>
+
+    
+    </div>
+    {% endif %}
+
+
+</body>
+</html>
