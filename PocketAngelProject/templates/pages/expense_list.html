@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+
+{% block expense %}
+<div>
+
+
+        <style>
+                 
+            table {
+            width: 100%;
+            }
+
+            thead {
+            background-color: blue;
+            color: white;
+            line-height: 30px;
+            }
+
+            tbody {
+            background-color: bisque;
+            line-height: 30px;
+            text-align: center;
+            }
+
+
+            </style>
+    
+
+
+
+    <h1>Your Expenses</h1>
+    <div class="'content">
+    <table class="table">
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            
+          
+            
+        </tr>
+        {% for exp in expenses %}
+        
+        <tr>
+            <!--Refer models.py of app to see Expense model-->
+            <td>{{ exp.date }}</td>
+            <td>{{ exp.amount }}</td>
+            <td>{{exp.category}}</td>
+            <td>{{exp.description}}</td>
+           
+           
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No expense recorded.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'add_expense' %}">Add expense</a>&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
+    <a href="{% url 'signout' %}">Sign Out</a>
+</div>
+</div>
+{% endblock %}

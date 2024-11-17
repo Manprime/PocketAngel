@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    
+</head>
+<body>
+    
+{% block welcome %}
+{% if user.is_authenticated %}
+<h3>Hello! {{user.name}}</h3>
+<p> Welcome! Together we will keep your spendings under control.<br>
+    Let's make sure that your savings are enough to fulfill all your dreams.
+</p>
+<p class="summary">
+  Your Total Income : ₹{{user.total_income}}
+  <br>
+  Your Total Expenses : ₹{{user.total_expense}}
+  <br>
+  Your Total Savings : ₹{{user.total_savings}}<br>
+</p>
+
+
+
+<span class="index-nav">
+    <a href="{% url 'signout' %}">Sign out</a>&nbsp;
+    <a class="nav-link"  href="{% url 'add_income' %}">Add Income</a>&nbsp;
+    <a class="nav-link"  href="{% url 'add_expense' %}">Add Expense</a>&nbsp;
+    <a class="nav-link"  href="{% url 'income_list' %}">Show Income Only</a>&nbsp;
+    <a class="nav-link"  href="{% url 'expense_list' %}">Show Expense Only</a>&nbsp;
+   
+</span>
+{% else %}
+<p>Hey!It seems you have not signed in. Please signin or if you are a new user then register. </p>
+  <!-- Display signin/register links -->
+  <a href="{% url 'signin' %}">Signin</a>
+  &nbsp;&nbsp;
+  <a href="{% url 'register' %}">Register</a>
+  {% endif %}
+<div>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      align-items: center ;
+      justify-content: baseline;
+    
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+    .index-nav{ 
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+      padding: 1vw;
+     
+
+      width:90%;
+      border-radius: 30px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+
+    }
+    .summary
+    {
+      background-color: #81fe0c;
+      border-color: #c3e6cb;
+      padding: 1vw;
+      width:90%;
+      left:3%;
+      border-radius: 50px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+  
+  
+  </style>
+{% block income %}
+
+{% endblock %}
+</div>
+
+<div>
+{% block expense %}
+    
+{% endblock %}
+    </div>
+
+{% endblock %}
+</body>
+</html>

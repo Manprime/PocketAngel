@@ -1,0 +1,62 @@
+
+{% extends 'index.html' %}
+{% block income %}
+
+    <div>
+    <h1>Your Incomes</h1>
+
+            <style>
+                  x
+                table {
+            width: 100%;
+            }
+
+            thead {
+            background-color: blue;
+            color: white;
+            line-height: 30px;
+            }
+
+            tbody {
+            background-color: bisque;
+            line-height: 30px;
+            text-align: center;
+            }
+
+            
+            </style>
+<div class="'content">
+    <table class="'table">
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            
+            
+        </tr>
+        {% for inc in incomes %}
+        <!--inc is an iterator and incomes is the list containing all incomes.See views.py income_list-->
+        <tr>
+            <td>{{ inc.date }}</td>
+            <td>{{ inc.amount }}</td>
+            <td>{{ inc.category }}</td>
+            <td>{{ inc.description }}</td>
+            
+            
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No income recorded.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'add_income' %}">Add Income</a>
+    &nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;
+    <a href="{% url 'signout' %}">Sign Out</a>
+
+</div>
+</div>
+
+{% endblock %}
+
