@@ -1,0 +1,439 @@
+{% load static %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+{%block add_fields%}
+
+<body>
+
+    <div class="nav-list">
+        <a href="{% url 'home' %}">
+            <span class="links_name" target="_blank">Home</span>
+        </a>&nbsp;&nbsp;&nbsp;
+
+        <a href="{% url 'dashboard' %}" target="_blank">
+            <span class="links_name">Dashboard</span>
+        </a>&nbsp;&nbsp;&nbsp;
+
+        <a href="{% url 'aboutpage' %}" target="_blank">
+            <span class="links_name">About us </span>
+        </a>&nbsp;&nbsp;&nbsp;
+
+        <div class="dropdown">
+            <a class="dropbtn">Features&blacktriangledown;&nbsp;&nbsp;
+            </a>
+            <div class="dropdown-content">
+                <a href="{% url 'add_expense' %}">Add Expense</a>
+                <a href="{% url 'add_income' %}">Add Income</a>
+                <a href="{% url 'add_emi' %}">Add EMI</a>
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+            </div>
+        </div>
+        <span class="dropdown">
+            <a class="dropbtn">Show&blacktriangledown;&nbsp;&nbsp;&nbsp;&nbsp;
+            </a>
+            <div class="dropdown-content">
+                <a href="{% url 'income_list' %}">Show Income </a>
+                <a href="{% url 'expense_list' %}">Show Expense </a>
+                <a href="{% url 'emi_list' %}">Show EMI</a>
+            </div>
+        </span>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {% if user.is_authenticated %}
+        <div class="dropdown">
+            <a class="dropbtn">Hi,User:{{user.name}}&blacktriangledown;&nbsp;&nbsp;
+            </a>
+            <div class="dropdown-content">
+                <a href="{% url 'signout' %}">Signout</a>
+            </div>
+        </div>
+    </div>
+
+
+    <link rel="stylesheet" href="{%static 'styles/add_forms_style.css' %}">
+
+    <!---------income form ------------------------------>
+
+    {% if form_type == 'income' %}
+    <title>PocketAngel | Add Income</title>
+    <div class="content" id="expform">
+        <h3 class="secondTitle">Add Income</h3>
+        <div class="form">
+            <form method="POST" id="IncForm">
+                {% csrf_token %}
+                {{ income_form.date.label_tag }}<br>
+                {{ income_form.date}}
+
+
+                {% if income_form.date.errors %}
+                {{ income_form.date.errors }}
+                {% endif %}
+                <br>
+              
+                {{ income_form.amount.label_tag}}<br>
+                {{ income_form.amount}}
+
+                {% if income_form.amount.errors %}
+                {{ income_form.amount.errors }}
+                {% endif %}
+                &nbsp;
+                <br>
+                {{ income_form.category.label_tag}}<br>
+                {{ income_form.category}}
+
+                {% if income_form.amount.errors %}
+                {{ income_form.amount.errors }}
+                {% endif %}
+
+                <a href="{% url 'add_category' %}" >&plus;Add category</a>
+
+                {{ income_form.description.label_tag}}<br>
+                {{ income_form.description}}<br><br>
+
+                
+                {% if income_form.description.errors %}
+                {{ income_form.description.errors }}
+                {% endif %}
+                
+                <br>
+
+
+                <button type="submit">Add Income</button>
+                <br>
+            </form>
+
+        </div>
+
+
+        <!---------expense form ------------------------------>
+        {% elif form_type == 'expense' %}
+        <title>PocketAngel | Add Expense</title>
+        <div class="content" id="expform">
+            <h3 class="secondTitle">Add Expense</h3>
+            <div class="form">
+                <form method="post" id="expForm">
+                    {% csrf_token %}
+                    {{ expense_form.date.label_tag }}<br>
+                    {{ expense_form.date}}
+                    {% if expense_form.date.errors %}
+                    {{ expense_form.date.errors }}
+                    {% endif %}<br>
+                    
+
+
+
+                    {{ expense_form.amount.label_tag }}<br>
+                    {{ expense_form.amount}}<br>
+                    {% if expense_form.amount.errors %}
+                    {{ expense_form.amount.errors }}
+                    {% endif %}
+
+                    {{ expense_form.category.label_tag }}<br>
+                    {{ expense_form.category }}
+                    <a href="{% url 'add_category' %}" >&plus;Add category</a>
+
+                    {{ expense_form.description.label_tag }} <br>
+                    {{ expense_form.description}}<br>
+
+                    {% if expense_form.description.errors %}
+                    {{ expense_form.description.errors }}
+                    {% endif %}
+
+                    {{ expense_form.is_fixed.label_tag }}
+                    {{ expense_form.is_fixed }}<br><br>
+
+
+                    <button type="submit">Add Expense</button><br>
+                </form>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!---------category form ------------------------------>
+        {% elif form_type == 'category' %}
+        <title>PocketAngel | Add Category</title>
+        <div class="content" id="categoryform">
+            <h3 class="secondTitle">Add Category</h3>
+            <div class="form">
+                <form method="post" id="categoryForm">
+                    {% csrf_token %}
+                    {{category_form.name.label_tag }}
+                    {{category_form.name}}
+
+                    {{ category_form.category_type.label_tag }}
+                    {{ category_form.category_type}}<br><br>
+
+                    <button type="submit">Add Category</button><br><br>
+                </form>
+                <a href="{% url 'add_income' %}" >Go to Add Income</a>&nbsp;
+
+                <a href="{% url 'add_expense' %}" >Go to Add Expense</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!---------emi form ------------------------------>
+                {% elif form_type == 'add_emi' %}
+                <title>PocketAngel | Add EMI</title>
+                <div class="content" id="emiform">
+                    <h3 class="secondTitle">Add EMI</h3>
+                    <div class="form">
+                        <form method="post" id="emiForm">
+                            {% csrf_token %}
+                            {{add_emi.amount.label_tag }}
+                            <br>
+                            {{add_emi.amount}}
+                            {% if add_emi.amount.errors %}
+                            {{ add_emi.amount.errors }}
+                            {% endif %}
+                            <br>
+
+                            {{add_emi.start_date.label_tag }}
+                            <br>
+                            {{add_emi.start_date}}
+
+                            {% if add_emi.start_date.errors %}
+                            {{ add_emi.start_date.errors }}
+                            {% endif %}
+
+                            <br>
+                            {{add_emi.end_date.label_tag }}
+                            <br>
+                            {{add_emi.end_date}}
+
+                            {% if add_emi.end_date.errors %}
+                            {{ add_emi.end_date.errors }}
+                            {% endif %}
+                            <br>
+                            {{add_emi.frequency.label_tag }}
+                            <br>
+                            {{add_emi.frequency}}
+
+                            {% if add_emi.frequency.errors %}
+                            {{ add_emi.frequency.errors }}
+                            {% endif %}
+                            <br>
+                            {{add_emi.next_payment_date.label_tag}}
+                            <br>
+                            {{add_emi.next_payment_date}}
+                            {% if add_emi.next_payment_date.errors %}
+                            {{ add_emi.next_payment_date.errors }}
+                            {% endif %}
+                            <br>
+                         
+
+                            <br>
+                            {{add_emi.description.label_tag }}
+                            <br>
+                            {{add_emi.description}}
+                            {% if add_emi.description.errors %}
+                            {{ add_emi.description.errors }}
+                            {% endif %}
+                            <br><br>
+
+
+
+
+                            <button type="submit">Add EMI</button>
+                            <br>
+                            <br>
+
+                        </form>
+                    </div>
+                    {% endif %}
+
+
+
+
+
+
+                    <!---------Update income form ------------------------------>
+
+
+
+                    {% if form_type == 'update_income' %}
+                    <title>PocketAngel | Update Income</title>
+                    <div class="content" id="expform">
+                        <h3 class="secondTitle">Update Income</h3>
+                        <div class="form">
+                            <form method="post" id="IncForm">
+                                {% csrf_token %}
+                                {{ income_form.date.label_tag }}<br>
+                                {{ income_form.date }}
+
+                                {% if income_form.date.errors %}
+                                <div class="error">{{ income_form.date.errors }}</div>
+                                {% endif %}
+                                <br>
+                                {{ income_form.amount.label_tag }}<br>
+                                {{ income_form.amount }}
+                                {% if income_form.amount.errors %}
+                                <div class="error">{{ income_form.amount.errors }}</div>
+                                {% endif %}
+                                <br>
+
+
+                                {{ income_form.category.label_tag }}<br>
+                                {{ income_form.category }}
+
+
+                                <a href="{% url 'add_category' %}" target="_blank">&plus;Add
+                                    category</a>
+                                {{ income_form.description.label_tag }}<br>
+                                {{ income_form.description }}<br>
+
+                                <button type="submit">Update Income</button>
+                                <br><br>
+                            </form>
+
+                        </div>
+                        <br>
+                        {% endif %}
+
+
+
+
+                        <!--------Update expense form ------------------------------>
+
+
+
+                        {% if form_type == 'update_expense' %}
+                        <title>PocketAngel | Update Expense</title>
+                        <div class="content" id="expform">
+                            <h3 class="secondTitle">Update Expense</h3>
+                            <div class="form">
+                                <form method="post" id="ExpForm">
+                                    {% csrf_token %}
+                                    {{ expense_form.date.label_tag }}<br>
+                                    {{ expense_form.date }}
+
+                                    {% if expense_form.date.errors %}
+                                    <div class="error">{{ expense_form.date.errors }}</div>
+                                    {% endif %}
+                                    <br>
+                                    {{ expense_form.amount.label_tag }}<br>
+                                    {{ expense_form.amount }}
+                                    {% if expense_form.amount.errors %}
+                                    <div class="error">{{ expense_form.amount.errors }}</div>
+                                    {% endif %}
+                                    <br>
+                                    {{ expense_form.category.label_tag }}<br>
+                                    {{ expense_form.category }}
+                                    {% if income_form.category.errors %}
+                                    <div class="error">{{ expense_form.category.errors }}</div>
+                                    {% endif %}
+                                    <a href="{% url 'add_category' %}" target="_blank">&plus;Add
+                                        category</a>
+                                    {{ expense_form.description.label_tag }}<br>
+                                    {{ expense_form.description }}<br>
+                                    {{ expense_form.is_fixed.label_tag }}
+                                    {{ expense_form.is_fixed}} <br>
+
+                                    <button type="submit">Update Expense</button>
+                                    <br><br>
+                                </form>
+
+                            </div>
+                            <br>
+                            {% endif %}
+
+
+                            <!--------Update EMI form ------------------------------>
+
+                            {% if form_type == 'update_emi' %}
+                            <title>PocketAngel | Update EMI</title>
+                            <div class="content" id="emiform">
+                                <h3 class="secondTitle">Update EMI</h3>
+                                <div class="form">
+                                    <form method="post" id="emiForm">
+                                        {% csrf_token %}
+                                        {{emi_form.amount.label_tag }}
+                                        <br>
+                                        {{emi_form.amount}}
+                                        {% if emi_form.amount.errors %}
+                                        {{ emi_form.amount.errors }}
+                                        {% endif %}
+                                        <br>
+
+                                        {{emi_form.start_date.label_tag }}
+                                        <br>
+                                        {{emi_form.start_date}}
+
+                                        {% if emi_form.start_date.errors %}
+                                        {{ emi_form.start_date.errors }}
+                                        {% endif %}
+
+                                        <br>
+                                        {{emi_form.end_date.label_tag }}
+                                        <br>
+                                        {{emi_form.end_date}}
+
+                                        {% if emi_form.end_date.errors %}
+                                        {{ emi_form.end_date.errors }}
+                                        {% endif %}
+                                        <br>
+                                        {{emi_form.frequency.label_tag }}
+                                        <br>
+                                        {{emi_form.frequency}}
+                                        e.g"Monthly","Yearly"
+                                        {% if emi_form.frequency.errors %}
+                                        {{ emi_form.frequency.errors }}
+                                        {% endif %}
+                                        <br>
+                                        {{emi_form.next_payment_date.label_tag}}
+                                        <br>
+                                        {{emi_form.next_payment_date}}
+                                        {% if emi_form.next_payment_date.errors %}
+                                        {{ emi_form.next_payment_date.errors }}
+                                        {% endif %}
+                                        <br>
+                                        {{emi_form.description.label_tag }}
+                                        <br>
+                                        {{emi_form.description}}
+                                        {% if emi_form.description.errors %}
+                                        {{ emi_form.description.errors }}
+                                        {% endif %}
+                                        <br><br>
+
+
+
+
+                                        <button type="submit">Update EMI</button>
+                                        <br>
+                                    </form>
+
+                                </div>
+                                <br>
+                                {% endif %}
+
+
+
+
+
+
+                                {%endif%}
+</body>
+{% endblock%}
+
+</html>

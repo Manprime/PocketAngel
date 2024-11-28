@@ -1,0 +1,65 @@
+{%extends 'overlay.html'%}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketAngel | Home</title>
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+</head>
+
+<body>
+
+
+
+    {%block mainpage%}
+    <div>
+        <section id="home" class="mainpage">
+            <h1>Track Your Budget Effortlessly and Efficiently</h1>
+            <p class="para">Manage your finances and achieve your financial goals.<br>
+                Let's start our journey together!<br>
+
+            </p>
+            <a href="#features" class="cta-button">Explore Features</a>
+        </section>
+
+        <section id="features" class="mp2ndhalf">
+            <h2>Features</h2>
+            <ul>
+                <a>Detailed dashboard</a><br>
+                <a>Real-time Expense Tracking</a><br>
+                <a>Budget Planning Tools</a><br>
+                <a>Financial Reports and Insights</a><br>
+                <a>Get Details of Your Incomes,Expenses and EMIs.</a><br>
+            </ul>
+        </section>
+
+        <section id="about" class="mp2ndhalf">
+            <h2>About</h2>
+            <p>The PocketAngel is dedicated to help you manage your finances effectively.
+                <br>
+                It is a web application designed to help users manage their finances effectively by tracking income,
+                expenses, and savings.
+            </p>
+        </section>
+
+        <section id="contact" class="mp2ndhalf">
+            <h2>Contact Us</h2>
+            <p>Get in touch for support and inquiries.<br>
+                Updates will soon arrive.</p>
+        </section>
+    </div>
+
+
+    <footer>
+        <p>&copy;2024 PocketAngel : An Efficient Budget Tracker</p>
+    </footer>
+
+</body>
+
+</html>
+
+{%endblock%}

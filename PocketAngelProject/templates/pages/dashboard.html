@@ -1,0 +1,28 @@
+{%extends 'overlay.html'%}
+{% load static %}
+{%block dashboard%}
+
+<link rel="stylesheet" href="{%static 'styles/dashboard.css' %}">
+
+
+<div class="dashboard">
+    <div class="box income">
+        <h2>Total Income</h2>
+        <p>₹{{user.total_income}}</p>
+    </div>
+    <div class="box expenses">
+        <h2>Total Expenses</h2>
+        <p>₹{{user.total_expense}}</p>
+    </div>
+
+    <div class="box savings">
+        <h2>Total Savings</h2>
+        <p>₹{{user.total_savings}}</p>
+    </div>
+   
+
+
+
+
+</div>
+{%endblock%}

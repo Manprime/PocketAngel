@@ -1,0 +1,162 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color:#bebebe;
+}
+h3{
+  color:black;
+
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+  padding: 10px;
+}
+
+.nav-list a {
+  color: antiquewhite;
+  text-decoration: none;
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 12px;
+  transition: background-color 0.5s ease;
+}
+
+.nav-list a:hover {
+  background-color: #355a27;
+  border-radius: 12px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #000000;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f4cccc;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.content :hover {
+  color: #000000;
+}
+a
+{
+  color:rgb(0, 0, 0);
+  text-decoration: none;
+
+}
+a:hover
+{
+text-decoration: underline;
+
+}
+
+.form {
+  background-color:rgb(219, 219, 219);
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.secondTitle {
+  margin-top: 0;
+  text-align: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  grid-column: 1 / -1;
+  background-color: #268a30;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #953d3d;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-list a {
+    margin: 5px;
+  }
+
+  .form {
+    padding: 10px;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+}

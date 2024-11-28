@@ -1,0 +1,100 @@
+{% block content %}
+{% load static %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+  <div class="alert alert-success" role="alert">
+    <h2>You Signed out!</h2>
+  </div>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Times', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #838383;
+      text-align: center;
+    }
+
+    .backimage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("{% static '/images/signoutpage.jpg' %}");
+      background-size: cover;
+      opacity: 0.6;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+
+    .alert {
+      background-color:goldenrod;
+      border-color: black;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      color: rgb(0, 0, 0);
+    }
+
+    h3 {
+      margin: 20px 0;
+      color: rgb(7, 7, 7);
+    }
+
+    p {
+      margin: 10px 20px;
+      color: #000000;
+      
+    }
+
+    a {
+      display: inline-block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #000000;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-transform:uppercase;
+      color: #000000;
+      
+    }
+  </style>
+
+  <div class="backimage"></div>
+
+  <div>
+    <h3>Thank You for using our services!</h3>
+    <p>
+      "I appreciate your time with us.
+      Have a wonderful day, and I look forward to seeing you again soon!"
+    </p>
+    <h3>Take Care!</h3>
+    <p>
+      "It’s been great having you here. <br>
+      Wishing you all the best until next time!<br>
+      Till then keep watching your finances!"
+    </p>
+    <h3>Do you want to sign in again?</h3>
+    <a href="{% url 'signin' %}">Sign In Again</a> <br />
+    <a href="{% url 'home' %}">Go back to home page</a>
+  </div>
+</body>
+{% endblock content %}

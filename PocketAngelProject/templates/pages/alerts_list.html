@@ -1,0 +1,33 @@
+{% block content %}
+<h2>Your Alerts</h2>
+<ul>
+    {% for alert in alerts %}
+        <li>
+            {{ alert.message }} - {{ alert.created_at }} 
+            {% if not alert.is_read %}
+                <p>(New)</p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+
+<section class="alert">
+    <h3>Your Alerts</h3>
+    <ul>
+        {% for alert in alerts %}
+            <li>
+                {{ alert.message }} - {{ alert.created_at }} 
+                {% if alert.is_read %}
+                    <strong>(New)</strong>
+                    <a href="{% url 'mark_alert_as_read' alert.id %}">Mark as read</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% if not alerts %}
+        <p>No alerts available.</p>
+    {% endif %}
+</section>
+
+{% endblock %}

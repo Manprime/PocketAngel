@@ -1,0 +1,54 @@
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'styles/index.css' %}">
+<header>
+    <nav class="navbar">
+        <div class="logo">PocketAngel</div>
+        <input type="checkbox" id="toggle" class="toggle-checkbox">
+        <label for="toggle" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+        <ul class="nav-links">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <div class="dropdown">
+                <a class="dropbtn">Features&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                    <a href="{% url 'add_expense' %}">Add Expense</a>
+                    <a href="{% url 'add_income' %}">Add Income</a>
+                    <a href="{% url 'add_emi' %}">Add EMI</a>
+
+                    <a href="{% url 'income_list' %}">Show Income </a>
+                    <a href="{% url 'expense_list' %}">Show Expense </a>
+                    <a href="{% url 'emi_list' %}">Show EMI</a>
+                </div>
+            </div>
+            <li><a href="{% url 'aboutpage' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Contact</a></li>
+            <div class="dropdown">
+                <a class="dropbtn">Hi,User:{{user.name}}&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'signout' %}">Signout</a>
+                </div>
+            </div>
+
+
+            {%else%}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Contact</a></li>
+            <li><a href="{% url 'signin' %}">Signin</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {%endif%}
+        </ul>
+    </nav>
+</header>
+{%block mainpage%}
+{%endblock%}
+{%block dashboard%}
+{%endblock%}
