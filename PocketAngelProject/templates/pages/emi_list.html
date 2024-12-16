@@ -1,0 +1,63 @@
+{%extends 'overlay.html'%}
+{% load static %}
+
+{% block emi_list %}
+<div class="exppage">
+
+    <link rel="stylesheet" href="{%static 'styles/expense_emi_list.css' %}">
+
+
+
+
+    <h1>Your EMI</h1>
+    <div class="'content">
+        <table class="table">
+            <tr>
+                <th>Start Date</th>
+                <th>Amount</th>
+                <th>End Date</th>
+                <th>Frequency</th>
+                <th>Next Payment On</th>
+                <th>Last Paid On</th>
+                <th>Description</th>
+                <th>Operations</th>
+
+
+
+            </tr>
+            {% for emi in emi_lst %}
+
+            <tr>
+                <!--Refer models.py of app to see EMI model-->
+                <td>{{emi.start_date }}</td>
+                <td>{{emi.amount }}</td>
+                <td>{{emi.end_date}}</td>
+                <td>{{emi.frequency}}</td>
+                <td>{{emi.next_payment_date}}</td>
+                <td>{{emi.last_payment_date}}</td>
+                <td>{{emi.description}}</td>
+                <td>
+                    <a href="{% url 'update_emi' emi.id %}" class="expbtn">Edit</a>
+                    <a href="{% url 'delete_emi' emi.id %}" class="expbtn"
+                        onclick="return confirm('Are you sure you want to delete this EMI?');">Delete</a>
+                        {% if emi.next_payment_date < emi.end_date %}
+                    <a href="{% url 'confirm_emi_pay' emi.id %}" class="expbtn" onclick="return confirm('Have you paid the installment?');">Pay Installment</a>
+                    {%endif%}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">&#x1F643;No EMI recorded.</td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+        <a class="expbtn" href="{% url 'add_emi' %}">Add EMI</a>&nbsp;
+        <a class="expbtn" href="{% url 'expense_list' %}">Expense List</a>&nbsp;
+        <a class="expbtn" href="{% url 'dashboard' %}">Dashboard</a>&nbsp;
+        <a class="expbtn" href="{% url 'home' %}">Home</a>&nbsp;
+        <a class="expbtn" href="{% url 'signout' %}">Sign Out</a>
+    </div>
+</div>
+{% endblock %}

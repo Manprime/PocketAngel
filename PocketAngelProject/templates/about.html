@@ -1,94 +1,110 @@
-
 {% block content %}
 {% load static %}
-<title>pocket Angel|About</title>
+<title>Pocket Angel | About</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <body>
-<div class="alert alert-success" role="alert">
-  <h2>Welcome To Pocket Angel!</h2>
-</div>
+  <div class="alert alert-success" role="alert">
+    <h2>Welcome To Pocket Angel!</h2>
+  </div>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Times', sans-serif;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Times', sans-serif;
+    }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  text-align: center;
-}
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f8f9fa;
+      text-align: center;
+    }
 
-.backimage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("{% static '/images/aboutus.jpg' %}");
-  background-size: cover;
-  opacity:0.4;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
+    .backimage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("{% static '/images/aboutus.jpg' %}");
+      background-size: cover;
+      opacity: 0.4;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
 
-.alert {
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
+    .alert {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
 
-h3 {
-  margin: 20px 0;
-  color: #04310e;
-}
+    h3 {
+      margin: 20px 0;
+      color: #04310e;
+    }
 
-p {
-  margin: 10px 20px;
-  color: #373333;
-}
+    p {
+      margin: 10px 20px;
+      color: #2c2828;
+    }
 
-a {
-  display: inline-block;
-  margin: 10px 0;
-  text-decoration: none;
-  color: #07432f;
-  font-weight: bold;
-}
+    a {
+      display: inline-block;
+      margin: 10px 0;
+      text-decoration: none;
+      color: #07432f;
+      font-weight: bold;
+    }
 
-a:hover {
-  text-decoration: underline;
-  color: #317e10;
-  background-color: #d4edda;
-}
-</style>
+    a:hover {
+      text-decoration: underline;
+      color: #030a00;
+      background-color: #9be3ab;
+      border-radius: 4px;
+    }
+  </style>
 
-<div class="backimage"></div>
+  <div class="backimage">
+  </div>
 
-<div>
-  <h3>Thank You for Visiting!</h3>
-  
-<p>The Pocket Angel is a Web application designed to help users manage their finances effectively by tracking income, expenses, and savings. 
-    <br>It offers features like categorizing spending, setting budget limits, visualizing data with charts, generating financial reports.
-    <br>With a focus on data security and user customization, the app provides a comprehensive tool for monitoring and improving financial habits.</p>
-    <p>You are in about page fellows! More exciting things coming up!  Stay Tuned!!!</p>
- <p>This  budget tracking Web App  will enable users to gain real-time insights into their spending, stay within budget limits, and achieve their financial goals.
-    <br> Through an intuitive interface, detailed visualizations, and secure data handling, users will be empowered to make informed financial decisions and build better financial habits.</p>
-  <a href="{% url 'signin' %}">Sign In</a> <br />
-  <a href="{% url 'home' %}">Go back to home page</a>
-</div>
+  <div>
+    <h3>Thank You For Your Time!</h3>
+
+    <p>The Pocket Angel is a Web application designed to help users manage their finances effectively by tracking
+      income, expenses, and savings.
+      <br>It offers features like categorizing spending, setting budget limits, visualizing data with charts, generating
+      financial reports.
+      <br>With a focus on data security and user customization, the app provides a comprehensive tool for monitoring and
+      improving financial habits.
+    </p>
+
+    <p>This budget tracking Web App will enable users to gain real-time insights into their spending, stay within budget
+      limits, and achieve their financial goals.
+      <br> Through an intuitive interface, detailed visualizations, and secure data handling, users will be empowered to
+      make informed financial decisions and build better financial habits.
+    </p>
+    <p>You are in the about page fellows! More exciting features coming up! Stay Tuned!!!</p>
+
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'dashboard' %}">Go to dashboard</a><br>
+    {%else%}
+    <a href="{% url 'signin' %}">Sign In</a> <br>
+    {%endif%}
+    <a href="{% url 'home' %}">Go to home page</a>
+  </div>
 </body>
 {% endblock content %}

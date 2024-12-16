@@ -14,7 +14,6 @@ class User(AbstractBaseUser,PermissionsMixin):
     phone = models.CharField(max_length=10)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-
     objects = UserManager()
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["name","phone"]
@@ -62,59 +61,86 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} ({self.category_type}) {self.created_at}"
+        return f"{self.name} - ({self.category_type})"
     
 
 class Income(models.Model):
     user = models.ForeignKey(User,
     on_delete=models.CASCADE,related_name='income')
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
     limit_choices_to={'category_type': 'Income'},related_name='income')
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True,max_length=100)
     date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.date} - {self.user.name} - {self.category.name} - {self.amount}"
+        return f"Idate: {self.date} - Name: {self.user.name} - Category: {self.category.name} - IAmount: {self.amount}  -  Description :{self.description}"
     
 class Expense(models.Model):
     user = models.ForeignKey(User,
     on_delete=models.CASCADE,related_name='expenses')
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.CASCADE,
     limit_choices_to={'category_type': 'Expense'},related_name='expenses')
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True,max_length=100)
     date = models.DateField()
     is_fixed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return f"{self.date} - {self.user.name} - {self.category.name} - {self.amount}"
+        return f"Edate: {self.date} - Name: {self.user.name} - Category: {self.category.name} - EAmount: {self.amount}  - IsFixed:{self.is_fixed} -  Description :{self.description}"
     
 
 class EMI(models.Model):
+    #frequency added
+    FREQUENCY_CHOICES = [
+        ('one_time','One-Time'),
+        ('monthly', 'Monthly'),
+        ('yearly', 'Yearly'),
+        ('quarterly', 'Quarterly'),
+        ('bi_weekly', 'Bi-Weekly'),
+        ('semi_annually', 'Semi-Annually'),
+        ('weekly', 'Weekly'),
+        ('daily', 'Daily'),
+        
+    ]
+    #[(databasev-value),(user-visible)]
     user = models.ForeignKey(User,
     on_delete=models.CASCADE,related_name='emis')
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(max_digits=15, decimal_places=2)
     start_date = models.DateField()
-    end_date = models.DateField()
-    frequency = models.CharField(max_length=20) # e.g., "Monthly"
-    description = models.TextField(blank=True, null=True)
-    next_payment_date = models.DateField()
+    end_date = models.DateField(help_text = "Please use the following format: <em>YYYY-MM-DD</em>.")
+    frequency = models.CharField(max_length=20,choices=FREQUENCY_CHOICES) 
+    # e.g., "Monthly"
+    description = models.TextField(blank=True, null=True,max_length=100)
+    next_payment_date = models.DateField(null=True)
+    last_payment_date = models.DateField(null=True, blank=True)
     def __str__(self):
-        return f"{self.user.name} - EMI {self.amount} - {self.frequency}"
+        return f"{self.user.name} - Amount {self.amount} - Frequency {self.frequency}- Start{self.start_date} - End{self.end_date}- NextPay{self.next_payment_date}- description{self.description}"
     
 
 class Budget(models.Model):
     user = models.ForeignKey(User,
     on_delete=models.CASCADE,related_name='budgets')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    amount_limit = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+    limit_choices_to={'category_type': 'Expense'},related_name='expense')
+    amount_limit = models.DecimalField(max_digits=15, decimal_places=2)
     start_date = models.DateField()
     end_date = models.DateField()
     def __str__(self):
         return f"{self.user.name} - {self.category.name} Budget {self.amount_limit}"
     
+
+class OverallBudget(models.Model):
+    user = models.ForeignKey(User,
+    on_delete=models.CASCADE,related_name='overallbudget')
+    overall_choice=[('Income','Income'),('Expense','Expense')]
+    category = models.CharField(max_length=10,choices=overall_choice)
+    amount_limit = models.DecimalField(max_digits=15, decimal_places=2)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    def __str__(self):
+        return f"{self.user.name} - {self.category} OverallBudget {self.amount_limit}-{self.end_date}"
 
 class Alert(models.Model):
     user = models.ForeignKey(User,

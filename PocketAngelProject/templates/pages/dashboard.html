@@ -1,0 +1,138 @@
+{% extends 'overlay.html' %}
+{% load static %}
+{% block dashboard %}
+
+<link rel="stylesheet" href="{% static 'styles/dashboard.css' %}">
+
+<div class="dashboard">
+    
+    <div class="box_tiles_container">
+        <div class="box income">
+            <h2>Total Income</h2>
+            <p>₹{{ user.total_income }}</p>
+        </div>
+        <div class="box expenses">
+            <h2>Total Expenses</h2>
+            <p>₹{{ user.total_expense }}</p>
+        </div>
+        <div class="box savings">
+            <h2>Total Savings</h2>
+            <p>₹{{ user.total_savings }}</p>
+        </div>
+        </div>
+   
+   <div class="report">
+        
+    <form action="{% url 'generate_report' %}" method="post">
+        {% csrf_token %}
+        <label for="report_type">Generate financial report:</label>
+        <select name="report_type" id="report_type" required>
+            <option value="">Choose</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Yearly">Yearly</option>
+            <option value="i">Income Report</option>
+            <option value="ex">Expense Report</option>
+            <option value="em">EMI Report</option>
+            <option value="bud">Budget Report</option>
+            <option value="overbud">Overall Budget Report</option>
+            <option value="all">All Reports</option>
+        </select>
+        
+        <button id="report_btn"type="submit">Generate Report</button>
+    </form>
+</div>
+    
+
+    <div class="chart_options">
+        <label for="charts">Select Chart Type: </label>
+        <select name="chart_type" id="chart_type">
+            <option value="pie">Pie</option>
+            <option value="bar">Bar</option>
+            <option value="doughnut">Doughnut</option>
+            <option value="polarArea">Polar Area</option>
+        </select>
+    </div>
+    <div class="charts">
+    <div class="chart-container">
+        <canvas id="financialChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script >
+    const data = {
+        labels: ['Total Income', 'Total Expenses', 'Total Savings'],
+        datasets: [{
+            label: 'Financial Overview',
+            data: [{{ user.total_income }}, {{ user.total_expense }}, {{ user.total_savings }}],
+            backgroundColor: [
+                'rgba(29, 105, 141,0.8)',
+                'rgba(164, 37, 28,0.8)',
+                'rgba(30, 139, 32,0.8)'
+            ],
+            borderColor: [
+                'rgba(0, 0, 0,1)',
+                'rgba(0, 0, 0,1)',
+                'rgba(0, 0, 0,1)',
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    /* Initial chart configuration */
+    let config = {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.label + ': ₹' + tooltipItem.raw;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    const ctx = document.getElementById('financialChart').getContext('2d');
+    let financialChart = new Chart(ctx, config);
+
+    /* Change chart type based on selection */
+    document.getElementById('chart_type').addEventListener('change', function() {
+        const selectedType = this.value;
+
+        /* Destroy the existing chart instance */
+        if (financialChart) {
+            financialChart.destroy();
+        }
+
+        /* Update the chart type */
+        config.type = selectedType;
+
+        /* Reset options based on chart type */
+        if (selectedType === 'pie' || selectedType === 'doughnut') {
+            config.options.scales = undefined; // No scales for pie/doughnut
+        } else {
+            config.options.scales = {
+                y: {
+                    beginAtZero: true
+                },
+                x: {
+                    beginAtZero: true
+                }
+            }; // Add scales for bar/polarArea
+        }
+
+        /* Create a new chart instance */
+        financialChart = new Chart(ctx, config);
+    });
+</script>
+</div>
+
+{% endblock %}

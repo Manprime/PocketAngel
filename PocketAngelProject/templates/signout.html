@@ -1,96 +1,93 @@
-{% block content %}
+{%extends 'overlay.html'%}
+{% block signout %}
 {% load static %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <body>
-<div class="alert alert-success" role="alert">
-  <h2>You Signed out!</h2>
-</div>
+  <div class="alert alert-success" role="alert">
+    <h2>You Signed out!</h2>
+  </div>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Times', sans-serif;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Times', sans-serif;
+    }
+    header{background-color: rgba(0,0,0,0.5);}
+     
+    
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
-  text-align: center;
-}
+ 
+    .backimage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("{% static '/images/signoutpage.jpg' %}");
+      background-size: cover;
+      opacity: 0.6;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
 
-.backimage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("{% static '/images/signoutpage.jpg' %}");
-  background-size: cover;
-  opacity:0.4;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-}
+    .alert {
+      background-color:transparent;
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      border-color: black;
+      padding: 15px;
+      border-radius: 15px;
+      color: rgb(0, 0, 0);
+    }
 
-.alert {
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
+    h3 {
+      margin: 20px 0;
+      color: rgb(7, 7, 7);
+    }
 
-h3 {
-  margin: 20px 0;
-  color: #04310e;
-}
+    p {
+      margin: 10px 20px;
+      color: #000000;
+      
+    }
+    .messg
+    {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-p {
-  margin: 10px 20px;
-  color: #373333;
-}
 
-a {
-  display: inline-block;
-  margin: 10px 0;
-  text-decoration: none;
-  color: #07432f;
-  font-weight: bold;
-}
 
-a:hover {
-  text-decoration: underline;
-  color: #317e10;
-  background-color: #d4edda;
-}
-</style>
 
-<div class="backimage"></div>
+    }
 
-<div>
-  <h3>Thank You for Visiting!</h3>
-  <p>
-    "I appreciate your time with us. 
-    Have a wonderful day, and I look forward to seeing you again soon!"
-  </p>
-  <h3>Take Care!</h3>
-  <p>
-    "It’s been great having you here. <br>
-    Wishing you all the best until next time!<br>
-    Till then keep watching your finances!"
-  </p>
-  <h3>Do you want to sign in again?</h3>
-  <a href="{% url 'signin' %}">Sign In Again</a> <br />
-  <a href="{% url 'home' %}">Go back to home page</a>
-</div>
+   
+    
+    
+  </style>
+
+  <div class="backimage"></div>
+
+  <div class="messg">
+    <h3>Thank You for using our services!</h3>
+    <p>
+      "I appreciate your time with us.
+      Have a wonderful day, and I look forward to seeing you again soon!"
+    </p>
+    <h3>Take Care!</h3>
+    <p>
+      "It’s been great having you here. <br>
+      Wishing you all the best until next time!<br>
+      Till then keep watching your finances!"
+    </p>
+    
+  </div>
 </body>
-{% endblock content %}
+{% endblock %}

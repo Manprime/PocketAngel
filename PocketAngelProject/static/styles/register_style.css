@@ -1,70 +1,82 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Times', sans-serif;
- 
+
 }
-body{
+
+body {
   min-height: 50vh;
   width: 100%;
   background: #000000;
- 
+
 }
-.container{
+
+.container {
   position: absolute;
-  top: 50%;   
- left: 50%;  
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   max-width: 430px;
   width: 100%;
   background: #fff;
   border-radius: 5px;
-  
-}
-.container .Registration{
-  display:block;
- 
+
 }
 
+.container .Registration {
+  display: block;
+
+}
 
 
-#check{
+
+#check {
   display: none;
 }
-.container .form{
+
+.container .form {
   padding: 2rem;
-  
+
 }
-.form header{
+
+.form header {
   font-size: 2rem;
   font-weight: 500;
   color: #000000;
   text-align: center;
   margin-bottom: 1.5rem;
 }
- .form input{
-   height: 40px;
-   width: 100%;
-   padding: 5px;
-   font-size: 17px;
-   margin-bottom: 0;
-   border: 1px solid #0ef476;
-   border-radius: 10px;
-   outline: none;
- }
- .form input:focus{
-   box-shadow: 0 1px 0 rgba(0,0,0,0.2);
- }
-.form a{
+
+.form input {
+  height: 40px;
+  width: 100%;
+  padding: 5px;
+  font-size: 17px;
+  margin-bottom: 0;
+  border: 1px solid #0ef476;
+  border-radius: 10px;
+  outline: none;
+}
+
+.form input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form a {
   font-size: 16px;
-  color: #009579;
+  color: #06826b;
   text-decoration: none;
 }
-.form a:hover{
+
+.form a:hover {
   text-decoration: underline;
+  color: rgb(88, 11, 98);
+
 }
-.form input.button{
+
+.form input.button {
   color: #fff;
   background: #009579;
   font-size: 1.2rem;
@@ -75,20 +87,28 @@ body{
   transition: 0.4s;
 }
 
-.form input.button:hover{
+.form input.button:hover {
   background: #006653;
 }
-.signup{
+
+.signup {
   font-size: 17px;
   text-align: center;
 }
-.signup label{
+
+.signup label {
   color: #009579;
   cursor: pointer;
 }
-.signup label:hover{
+
+.signup label:hover {
   text-decoration: underline;
 }
-.signup .tag_line{
+
+.signup .tag_line {
   font-size: 12px;
+}
+
+.errorlist {
+  color: rgb(195, 39, 39);
 }

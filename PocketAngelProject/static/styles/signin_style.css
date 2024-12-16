@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -7,20 +6,11 @@
 }
 
 body {
-    background: #000;
+    background: #000000;
 }
 
 
 
-nav {
-    position: fixed;
-    padding: 25px 60px;
-    z-index: 1;
-}
-
-nav a img {
-    width: 167px;
-}
 
 .form-wrapper {
     position: absolute;
@@ -30,7 +20,7 @@ nav a img {
     padding: 70px;
     width: 450px;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, .75);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .form-wrapper h2 {
@@ -51,17 +41,17 @@ form .form-control {
 .form-control input {
     height: 100%;
     width: 100%;
-    background: #333;
+    background: #959794;
     border: none;
     outline: none;
     border-radius: 4px;
-    color: #fff;
+    color: #000000;
     font-size: 1rem;
     padding: 0 20px;
 }
 
 .form-control input:is(:focus, :valid) {
-    background: #444;
+    background: #c5c9c6;
     padding: 16px 20px 0;
 }
 
@@ -72,7 +62,7 @@ form .form-control {
     transform: translateY(-50%);
     font-size: 1rem;
     pointer-events: none;
-    color: #8c8c8c;
+    color: #000000;
     transition: all 0.1s ease;
 }
 
@@ -85,7 +75,7 @@ form button {
     width: 100%;
     padding: 16px 0;
     font-size: 1rem;
-    background: #0952e5;
+    background: rgb(167, 25, 25);
     color: #fff;
     font-weight: 500;
     border-radius: 4px;
@@ -97,7 +87,7 @@ form button {
 }
 
 form button:hover {
-    background: #c30b08;
+    background: green;
 }
 
 .form-wrapper a {
@@ -110,7 +100,7 @@ form button:hover {
 }
 
 .form-wrapper :where(label, p, small, a) {
-    color: #0cc7f1;
+    color:goldenrod;
 }
 
 form .form-help {
@@ -132,7 +122,7 @@ form .form-help :where(label, a) {
 }
 
 .form-wrapper p a {
-    color: #01fd16;
+    color:rgb(14, 207, 14);
 }
 
 .form-wrapper small {
@@ -145,25 +135,8 @@ form .form-help :where(label, a) {
     color: #0071eb;
 }
 
-@media (max-width: 740px) {
-    body::before {
-        display: none;
-    }
 
-    nav, .form-wrapper {
-        padding: 20px;
-    }
+.errorlist {
+    color: rgb(237, 43, 43);
 
-    nav a img {
-        width: 140px;
-    }
-
-    .form-wrapper {
-        width: 100%;
-        top: 43%;
-    }
-
-    .form-wrapper form {
-        margin: 25px 0 40px;
-    }
 }

@@ -51,6 +51,7 @@ admin.site.register(Income)
 admin.site.register(Expense)
 admin.site.register(EMI)
 admin.site.register(Budget)
+admin.site.register(OverallBudget)
 admin.site.register(Alert)
 admin.site.register(Report)
 
