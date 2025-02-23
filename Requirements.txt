@@ -1,4 +1,5 @@
-Requirements:
-Python Version 3.12
-Django 5.1
-Prior knowledge in databases,html,css etc
+# Requirements
+# Python Version 3.12 (minimum 3.9 required)
+django==5.1
+reportlab==3.6.12
+#Prior knowledge in databases,html,css,javascript etc
