@@ -26,3 +26,7 @@ The project is in development stage
 	make informed financial decisions and build better financial habits.
 
 </p>
+<br>
+<a href="https://drive.google.com/file/d/1_GFcCoHP7WkYinRpc3V4NeAymS5vAaOk/view?usp=sharing" rel="nofollow">See project documentation</a>
+<br>
+<a href="https://drive.google.com/drive/folders/1fFi7XR0AW7pYxsruQ2ToLV5jIn4qH-vy?usp=sharing" rel="nofollow">Application Previews & Features
