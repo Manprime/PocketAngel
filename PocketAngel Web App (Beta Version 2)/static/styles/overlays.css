@@ -1,0 +1,114 @@
+header {
+    background: rgb(22, 21, 21);
+    color: #000000;
+    border-radius: 10px;
+    font-size: large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: antiquewhite;
+    
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color:antiquewhite;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.nav-links a:hover {
+    background-color: #345e31;
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #000000;
+    padding: 5px 7px;
+    text-decoration: none;
+    display: block;
+    
+}
+
+.dropdown-content a:hover {
+    background-color: #d2b1b1;
+    border-radius: 20px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    border-radius: 5px;
+}
+.messages
+{
+    color: rgb(61, 148, 114);
+    text-align: center;
+   
+}
+
+
+/* Basic styles for notifications */
+.notification-container {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.notification {
+    background-color: green; 
+    color: white;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    position: relative;
+    width: 300px; 
+    /* Adjust width as needed */
+    box-shadow: 0 4px 8px #2b6e3333;
+}
+
+.notification-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time-bar {
+    height: 5px;
+    background-color: rgb(253, 8, 8);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transition: width 5s linear; 
+    /* Adjust duration for time bar*/
+}

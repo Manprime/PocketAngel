@@ -1,0 +1,125 @@
+
+{% load static %}
+{%block mainpage%}
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketAngel | Home</title>
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+</head>
+<header>
+    <nav class="navbar">
+        <div class="logo">PocketAngel</div>
+       
+        
+        <ul class="nav-links">
+            {% if user.is_authenticated %}
+            <li><a class="mainnavbar" href="{% url 'home' %}">Home</a></li>
+            <div class="dropdown">
+                <a class="dropbtn">Features&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a class="mainnavbar" href="{% url 'dashboard' %}">Dashboard</a>
+                    <a class="mainnavbar" href="{% url 'add_expense' %}">Add Expense</a>
+                    <a class="mainnavbar" href="{% url 'add_income' %}">Add Income</a>
+                    <a class="mainnavbar"  href="{% url 'add_emi' %}">Add EMI</a>
+                    <a class="mainnavbar" href="{% url 'add_goal' %}">Set Goal</a>
+                    <a class="mainnavbar" href="{% url 'set_budget' %}">Set Budget</a>
+
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn">Show&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'budgetlist' %}">Show Budget</a>
+                    <a href="{% url 'income_list' %}">Show Income </a>
+                    <a href="{% url 'expense_list' %}">Show Expense </a>
+                    <a href="{% url 'emi_list' %}">Show EMI</a>
+                    <a href="{% url 'goal_list' %}">Show Goals</a>
+                    <a href="{% url 'alerts_list' %}">Show Alerts</a>
+                </div>
+            </div>
+            <li><a href="{% url 'aboutpage' %}">About</a></li>
+            <li><a href="{% url 'alerts_list' %}">Alerts</a></li>
+            <div class="dropdown">
+                <a class="dropbtn">Hi,User:{{user.name}}&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'signout' %}">Signout</a>
+                </div>
+            </div>
+
+
+            {%else%}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Contact</a></li>
+            <li><a href="{% url 'signin' %}">Signin</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {%endif%}
+        </ul>
+    </nav>
+</header>
+<div class="messages">
+    {% if messages %}
+            {% for message in messages %}
+                {{ message.tags }}:{{ message }}
+            {% endfor %}
+    {% endif %}
+</div>
+<body>
+
+
+
+    
+    <div>
+        <section id="home" class="mainpage">
+            <h1>Track Your Budget Effortlessly and Efficiently</h1>
+            <p class="para">Manage your finances and achieve your financial goals.<br>
+                Let's start our journey together!<br>
+
+            </p>
+            <a href="#features" class="cta-button">Explore Features</a>
+        </section>
+
+        <section id="features" class="mp2ndhalf">
+            <h2>Features</h2>
+            <ul>
+                <a>Detailed dashboard</a><br>
+                <a>Real-time Expense Tracking</a><br>
+                <a>Budget Planning Tools</a><br>
+                <a>Financial Reports and Insights</a><br>
+                <a>Get Details of Your Incomes,Expenses and EMIs.</a><br>
+            </ul>
+        </section>
+
+        <section id="about" class="mp2ndhalf">
+            <h2>About</h2>
+            <p>The PocketAngel is dedicated to help you manage your finances effectively.
+                <br>
+                It is a web application designed to help users manage their finances effectively by tracking income,
+                expenses, and savings.<a href="{% url 'aboutpage' %}">>>More</a> 
+            </p>
+        </section>
+
+        <section id="contact" class="mp2ndhalf">
+            <h2>Contact Us</h2>
+            <p>Get in touch for support and inquiries.<br>
+                Contact details will be updated soon.<br>
+            Meanwhile,you can check the <a href="https://github.com/Manprime/PocketAngel.git">Project Page</a> for more details.</p>
+        </section>
+    </div>
+
+
+    <footer>
+        <p>&copy;2024-25 PocketAngel : An Efficient Budget Tracker</p>
+    </footer>
+
+</body>
+
+
+
+{%endblock%}

@@ -1,0 +1,255 @@
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About PocketAngel</title>
+    
+</head>
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#d2d2d2;
+    color: #333;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.intro h2 {
+    color: #4CAF50;
+}
+
+.team {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    background-color: rgb(237, 236, 236);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+    width: 20%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.team-member h3 {
+    margin: 0.5em 0;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    
+    bottom: 0px;
+}
+
+header {
+    background: rgb(22, 21, 21);
+    color: #000000;
+    border-radius: 10px;
+    font-size: large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: antiquewhite;
+    
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color:antiquewhite;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.nav-links a:hover {
+    background-color: #345e31;
+    border-radius: 10px;
+    padding: 12px 16px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #000000;
+    padding: 5px 7px;
+    text-decoration: none;
+    display: block;
+    
+}
+
+.dropdown-content a:hover {
+    background-color: #d2b1b1;
+    border-radius: 20px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    border-radius: 5px;
+}
+</style>
+<header>
+    <nav class="navbar">
+        <div class="logo">PocketAngel</div>
+       
+        
+        <ul class="nav-links">
+            {% if user.is_authenticated %}
+            <li><a class="mainnavbar" href="{% url 'home' %}">Home</a></li>
+            <div class="dropdown">
+                <a class="dropbtn">Features&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a class="mainnavbar" href="{% url 'dashboard' %}">Dashboard</a>
+                    <a class="mainnavbar" href="{% url 'add_expense' %}">Add Expense</a>
+                    <a class="mainnavbar" href="{% url 'add_income' %}">Add Income</a>
+                    <a class="mainnavbar" href="{% url 'add_emi' %}">Add EMI</a>
+                    <a class="mainnavbar" href="{% url 'add_goal' %}">Set Goal</a>
+                    <a class="mainnavbar" href="{% url 'set_budget' %}">Set Budget</a>
+                    <a class="mainnavbar" href="{% url 'set_overall_budget' %}">Set Overall Budget</a>
+
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="dropbtn">Show&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'budgetlist' %}">Show Budget</a>
+                    <a href="{% url 'generate_report' %}">Generate Report</a>
+                    <a href="{% url 'income_list' %}">Show Income </a>
+                    <a href="{% url 'expense_list' %}">Show Expense </a>
+                    <a href="{% url 'goal_list' %}">Show Goals</a>
+                    <a href="{% url 'emi_list' %}">Show EMI</a>
+                    <a href="{% url 'alerts_list' %}">Show Alerts</a>
+                    <a href="{% url 'overallbudgetlist' %}">Show Overall Budget</a>
+                </div>
+            </div>
+            <li><a href="{% url 'aboutpage' %}">About</a></li>
+          
+            <li><a href="{% url 'alerts_list' %}">Alerts&#128276;</a></li>
+        
+           
+            <div class="dropdown">
+                <a class="dropbtn">Hi,User:{{user.name}}&blacktriangledown;&nbsp;&nbsp;
+                </a>
+                <div class="dropdown-content">
+                    <a href="{% url 'signout' %}">Signout</a>
+                </div>
+            </div>
+
+
+            {%else%}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}">Contact</a></li>
+            <li><a href="{% url 'signin' %}">Signin</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {%endif%}
+        </ul>
+    </nav>
+</header>
+<body>
+   
+    <main>
+        <section class="intro">
+            <h2>Welcome to PocketAngel</h2>
+            <p>PocketAngel is designed to make financial planning simple and effective. It is a Web application designed to help users manage their finances effectively by tracking income, expenses, and savings. It offers features like categorizing spending, setting budget limits, visualizing data with charts, generating financial reports. With a focus on data security and user customization, the app provides a comprehensive tool for monitoring and improving financial habits.</p>
+        </section>
+        <section class="team">
+            <h2>Timeline</h2>
+            <div class="team-member">
+               
+                <h3>Project Lauch Year</h3>
+                <p>2024</p>
+                <a href="https://github.com/Manprime/PocketAngel.git">Project Page</a>
+            </div>
+            <div class="team-member">
+               
+                <h3>Last Feature Update</h3>
+                <p>2025</p>
+                <p>+Added Goals</p>
+                <p>+Generate Reports</p>
+                
+            </div>
+            <div class="team-member">
+                
+                <h3>Developed by</h3>
+                <p>Manish(Man-Prime)</p>
+                
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024-25 PocketAngel : An Efficient Budget Tracker</p>
+    </footer>
+</body>
+</html>
+
+
+{% endblock content %}

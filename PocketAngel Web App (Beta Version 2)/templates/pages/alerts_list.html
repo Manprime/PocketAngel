@@ -1,0 +1,63 @@
+{% extends 'overlay.html' %}
+{% load static %}
+{% block alertpage %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketAngel | Alerts</title>
+    <link rel="stylesheet" href="{% static 'styles/alerts.css' %}">
+</head>
+
+<body>
+    {%if display_type == 'alerts_page' %}
+    <div class="alert-container">
+        <h1>Alerts</h1>
+        <marquee> &star;Necessary Alerts can be removed/deleted only after proper action has been taken from user part.</marquee>
+        {% for alert in alerts %}
+            <div class="alert {% if alert.is_read %}read{% else %}unread{% endif %}">
+                <p><strong>Alert:</strong> {{ alert.message }}</p>
+                <span class="timestamp">{{ alert.created_at|date:"F j, Y, g:i a" }}</span>
+                {% if not alert.is_read %}
+                    <a href="{% url 'mark_alert_as_read' alert.id %}" class="mark-read">Mark as read</a>
+                    <a href="{% url 'delete_alert' alert.id %}" class="delete">Remove</a>
+                {% else %}
+                    <a href="{% url 'delete_alert' alert.id %}" class="delete">Delete</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No alerts available&#10071; </p>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+    {%elif display_type == 'reports_page'%}
+    <div class="alert-container">
+        <h1>Reports</h1>
+        <marquee> &star;All previous generated reports appear here.</marquee>
+        {% for r in reports %}
+            <div >
+                <p><strong>Report:</strong>A report was generated with report_type '{{ r.report_type }}'</p>
+                <span class="timestamp">{{ r.created_at|date:"F j, Y, g:i a" }}</span>
+                
+                <a href="{% url 'generate_report' %}?report_type={{ r.report_type }}" class="delete">Download</a>
+                <a href="{% url 'delete_report' r.id %}" class="delete">Remove</a>
+                
+            </div>
+        {% empty %}
+            <p>No reports generated.&#10071; </p>
+        {% endfor %}
+    </div>
+
+
+
+
+{%endif%}
+</body>
+</html>
+{% endblock %}
