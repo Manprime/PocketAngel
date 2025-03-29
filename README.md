@@ -4,7 +4,7 @@ This is a budget tracking app created using Django framework of Python.
 <br> 
 This project is currently public on GitHub. Hope,you get valuable insights from it. 
 <br>
-The project is in development stage
+More features will be added in the project in future.
 <br>
 
 <br>
