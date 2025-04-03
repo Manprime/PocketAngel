@@ -31,4 +31,5 @@ More features will be added in the project in future.
 <br>
 <a href="https://drive.google.com/drive/folders/1fFi7XR0AW7pYxsruQ2ToLV5jIn4qH-vy?usp=sharing" rel="nofollow">Application Previews & Features</a>
 <br>
-<p>*Some pictures may be of old interface. Actual interface may vary.</p>
+<p>*Some pictures may be of old interface. Actual interface may vary as new changes have been made.
+The pictures will be updated in future.</p>
